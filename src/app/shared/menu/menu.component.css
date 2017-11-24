@@ -1,0 +1,17 @@
+ul li a {
+  display:block;
+  color:#4c5154;
+  text-align: center;
+}
+
+ul li a:hover, ul li a:focus {
+  border-color:#db2d2c;
+  border-bottom: 1px solid  #db2d2c;
+  box-shadow: none;
+ }
+
+.navbar-light .navbar-nav .active > .nav-link{
+  border-color:#db2d2c;
+  border-bottom: 1px solid  #db2d2c;
+  box-shadow: none;
+}

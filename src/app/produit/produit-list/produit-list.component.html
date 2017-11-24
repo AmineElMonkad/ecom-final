@@ -1,0 +1,32 @@
+
+<div class="wrapper">
+  <div class="content">
+    <!-- content here -->
+    <div class="product-grid product-grid--flexbox">
+      <div class="product-grid__wrapper">
+        <!-- Product list start here -->
+
+        <!-- Single product -->
+        <div *ngFor="let produit of (listProduits | categorySearch: cat)" class="product-grid__product-wrapper">
+          <div class="product-grid__product">
+            <div class="product-grid__img-wrapper">
+              <img src="{{(produit.listPhotos[0]== null) ? '../../../assets/wheel.svg' : produit.listPhotos[0].urlImage}}" alt="Img" class="product-grid__img" />
+            </div>
+            <span class="product-grid__title">{{produit.marque.libelle}} {{produit.reference}} </span>
+            <span class="product-grid__price">{{produit.prixUnitaire}}€</span>
+            <div class="product-grid__extend-wrapper">
+              <div class="product-grid__extend">
+                <p class="product-grid__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
+                <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Ajouter au Panier</span>
+                <span class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> Détails</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>

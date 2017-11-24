@@ -1,0 +1,33 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" routerLink=""
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation">
+    <span c lass="navbar-toggler-icon">
+      <img width="150" src="../../../assets/logo.svg">
+    </span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <nav class="navbar navbar-light bg-faded">
+      <a class="navbar-brand" href="/">
+        <img src="../../../assets/logo.svg" width="150" height="20">
+      </a>
+    </nav>
+
+    <ul class="navbar-nav mr-auto">
+      <li *ngFor="let category of listCateogry" class="nav-item {{category.active}}">
+        <a (click)="selectItem(listCateogry.indexOf(category))" class="nav-link"> {{category.libelle}} <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Recherche">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+    </form>
+
+    <!-- add user component (Sofiane)-->
+
+    <!-- add store (pannier) component (Mohammed)-->
+
+  </div>
+</nav>
