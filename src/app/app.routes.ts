@@ -9,13 +9,12 @@ export const routes: Routes  = [
   {
     path: 'produit',
     loadChildren: './produit/produit.module#ProduitModule'
-  }
-  /*,
+  },
   {
     path: 'user',
-    loadChildren: './user/index#UserModule'
-    // , canActivate: [ componetnttoactivate ]
-  },
+    loadChildren: './user/user.module#UserModule'
+  }
+  /*,
   {
     path: 'auth',
     loadChildren: './auth/auth.module#AuthModule'

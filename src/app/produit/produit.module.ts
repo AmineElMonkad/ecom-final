@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {CommunModule} from '../shared/commun.module';
 import {CommonService} from '../util/common-service';
-import { PromotionListComponent } from '../home/promotion-list/promotion-list.component';
-import {ProduitPromotionApi} from '../core/providers/produit-promotion-api';
-import {PromotionApi} from '../core/providers/promotion-api';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -16,12 +12,23 @@ import { CategorySearchPipe } from '../core/pipes/category-search.pipe';
 
 // Routes
 import { ProduitsRoutes as routes } from './produit.routes';
+import { FiltreBarComponent } from './filtre-bar/filtre-bar.component';
+import { ProduitComponent } from './produit.component';
+import {MarqueApi} from '../core/providers/marque-api.provider';
+import {FormsModule} from '@angular/forms';
+import {MarqueFilterPipe} from '../core/pipes/marque-filter.pipe';
+import {MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatSliderModule} from '@angular/material';
+import {PrixFilterPipe} from '../core/pipes/prix-filter.pipe';
+import { PrdouitDetailsComponent } from './prdouit-details/prdouit-details.component';
+import { PhotosListComponent } from './prdouit-details/photos-list/photos-list.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
   imports: [
+    MatSliderModule, MatCheckboxModule, MatCardModule, MatButtonModule, MatInputModule,
+    FormsModule,
     CommonModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
@@ -37,12 +44,17 @@ export function HttpLoaderFactory(http: HttpClient) {
     // components
      ProduitListComponent,
     // pipes
-    CategorySearchPipe]
+    CategorySearchPipe, MarqueFilterPipe, PrixFilterPipe,
+    FiltreBarComponent,
+    ProduitComponent,
+    PrdouitDetailsComponent,
+    PhotosListComponent]
   , providers: [
      { provide: CommonService, useValue: CommonService }
    , { provide: ProduitApi, useValue: ProduitApi}
+    , { provide: MarqueApi, useValue: MarqueApi}
   ]
   // to update at laste to export only super component
-  , exports : [ProduitListComponent]
+  , exports : [ProduitComponent]
 })
 export class ProduitModule { }

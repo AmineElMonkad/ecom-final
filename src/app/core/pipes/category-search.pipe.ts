@@ -13,13 +13,12 @@ export class CategorySearchPipe implements PipeTransform {
 
   transform(produitList: any, args?: any ): any {
     let result = [];
-    console.log('type ' + typeof args)
     if (!args) {
       return produitList;
     }
     result = produitList.filter(
       item => item.category.id === +args);
-   return result;
+    return result;
   }
 
 

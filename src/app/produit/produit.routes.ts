@@ -1,9 +1,10 @@
 
 import {Routes} from '@angular/router';
-import {PromotionListComponent} from '../home/promotion-list/promotion-list.component';
-import {ProduitListComponent} from "./produit-list/produit-list.component";
+import {ProduitComponent} from './produit.component';
+import {PrdouitDetailsComponent} from './prdouit-details/prdouit-details.component';
 
 export const ProduitsRoutes: Routes  = [
-  { path: 'produit', component: ProduitListComponent }
+  { path: 'produit', component: ProduitComponent },
+  { path: 'produit/details', component: PrdouitDetailsComponent }
 ];
 

@@ -11,6 +11,7 @@ import {NgModule} from '@angular/core';
 import {commun} from './commun.routes';
 import {CommonService} from '../util/common-service';
 import {CommonModule} from '@angular/common';
+import {MatIconModule} from "@angular/material";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -20,6 +21,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     MenuComponent],
   imports: [
+    MatIconModule,
     CommonModule,
     HttpClientModule,
     RouterModule.forRoot(commun),

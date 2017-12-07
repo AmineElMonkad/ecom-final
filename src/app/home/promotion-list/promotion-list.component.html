@@ -43,10 +43,11 @@
                   <img src="{{(produitPromo.produit.listPhotos[0]== null) ? '../../../assets/logo.svg' : produitPromo.produit.listPhotos[0].urlImage}}" alt="Img" class="product-grid__img" />
                 </div>
                 <span class="product-grid__title">{{produitPromo.produit.marque.libelle}} {{produitPromo.produit.reference}} </span>
-                <span class="product-grid__oldprice ">  <s data-text="Strikethrough">{{produitPromo.produit.prixUnitaire}}€</s></span> <span class="product-grid__price">-{{(produitPromo.tauxReduction == null)? produitPromo.reduction+"€": produitPromo.tauxReduction +'%'}}</span> <span class="product-grid__oldprice">{{produitPromo.prixPromotion}}€</span>
-                <div class="product-grid__extend-wrapper">
-                  <div class="product-grid__extend">
-                    <p class="product-grid__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
+                <span class="product-grid__oldprice ">  <s data-text="Strikethrough">{{produitPromo.produit.prixUnitaire}}€</s></span>
+                <span class="product-grid__price">-{{(produitPromo.tauxReduction === null || produitPromo.tauxReduction === 0)? produitPromo.reduction+"€": produitPromo.tauxReduction +'%'}}</span> <span class="product-grid__oldprice">{{produitPromo.prixPromotion}}€</span>
+                <div class="product-grid__extend-wrapper" style="width: 100%;">
+                  <div class="product-grid__extend" style="width: 100%">
+                    <p class="product-grid__description" >{{(produitPromo.produit.quantite>0)?'disponible':'non disponible'}}</p>
                     <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Ajouter au Panier</span>
                     <span class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> Détails</span>
                   </div>

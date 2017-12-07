@@ -1,11 +1,10 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {ProduitApi} from '../../core/providers/produit-api.provider';
 import {CommonService} from '../../util/common-service';
 import {Produit} from '../../core/models/produit';
-import {Category} from "../../core/models/category";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {Observable} from "rxjs/Observable";
 import {PromiseObservable} from "rxjs/observable/PromiseObservable";
+import {Marque} from "../../core/models/marque";
 
 
 @Component({
@@ -17,10 +16,12 @@ import {PromiseObservable} from "rxjs/observable/PromiseObservable";
 })
 export class ProduitListComponent implements OnInit {
    listProduits: Array<Produit>;
-   @Input() selectedCateogy: Category;
   cat: number;
-  constructor(private _commonService: CommonService, private _produitApi: ProduitApi
-  , public route: ActivatedRoute
+  @Input()
+  filtre: { marques: Array<Marque>, prix: number } = { marques: [], prix: 0};
+
+  constructor(public _commonService: CommonService, private _produitApi: ProduitApi
+  , public route: ActivatedRoute, public router: Router
   ) { }
 
   ngOnInit() {
@@ -45,4 +46,10 @@ export class ProduitListComponent implements OnInit {
       });
     return PromiseObservable.create(promise).share();
   }
+
+
+  getDetails(produitId: number) {
+    this.router.navigate(['produit/details', {id: produitId}]);
+  }
+
 }

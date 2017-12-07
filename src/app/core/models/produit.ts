@@ -11,6 +11,6 @@ export class Produit {
   category: Category;
   marque: Marque;
 
-  isPromotio: false;
+  isPromotion: false;
   prixePromotion?: number;
 }

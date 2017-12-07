@@ -13,6 +13,7 @@ import {RouterModule} from '@angular/router';
 
 // Routes
 import {routes} from './app.routes';
+import {UserModule} from "./user/user.module";
 
   @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import {routes} from './app.routes';
     // modules
     HomeModule,
     ProduitModule,
+    UserModule,
 
     // rooting
       RouterModule.forRoot(routes),

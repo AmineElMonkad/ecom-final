@@ -7,7 +7,7 @@ import {Category} from '../../core/models/category';
 @Component({
   selector: 'app-mon-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.scss']
   , providers: [ CategoryApi, CommonService]
 })
 export class MenuComponent implements OnInit {
@@ -33,5 +33,9 @@ export class MenuComponent implements OnInit {
     this.listCateogry.forEach(function(cat, i) {  cat.active = ''; });
     this.listCateogry[item].active = 'active';
      this.router.navigate(['produit', {id: this.listCateogry[item].id}]);
+  }
+
+  selectUser(component) {
+    this.router.navigate(['user/' + component]);
   }
 }

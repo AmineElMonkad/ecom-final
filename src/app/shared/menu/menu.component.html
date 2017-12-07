@@ -19,13 +19,32 @@
       <li *ngFor="let category of listCateogry" class="nav-item {{category.active}}">
         <a (click)="selectItem(listCateogry.indexOf(category))" class="nav-link"> {{category.libelle}} <span class="sr-only">(current)</span></a>
       </li>
+
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Recherche">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+      <button class="btn btn-sm align-middle btn-outline-secondary" type="submit">Rechercher</button>
     </form>
 
+  <ul class="navbar-nav mr-auto">
     <!-- add user component (Sofiane)-->
+    <li class="nav-item dropdown">
+      <a class="nav-link" id="navbarDropdown1" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <mat-icon color="primary">account_circle</mat-icon>
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+        <li><button style="border: none" mat-icon-button class="dropdown-item" (click)="selectUser('auth')">Authentification</button></li>
+        <li><button style="border: none" mat-icon-button class="dropdown-item" (click)="selectUser('inscription')">Inscription</button></li>
+      </ul>
+    </li>
+    <li class="cart">
+        <button style="border: none" mat-icon-button><mat-icon>add_shopping_cart</mat-icon> <span class="badge badge-danger">0</span></button>
+    </li>
+    <!--<li class="nav-item">
+      <button style="border: none" mat-icon-button><mat-icon>add_shopping_cart</mat-icon> <span class="badge">7</span></button>
+      &lt;!&ndash; (click)="selectCard()"&ndash;&gt;
+    </li>-->
+</ul>
 
     <!-- add store (pannier) component (Mohammed)-->
 

@@ -7,6 +7,5 @@ export class Marque {
   dateCreation: Date;
   lastUpdate: Date;
   photo: Photo;
-
-  isActive: boolean;
+  isSelected = false;
 }

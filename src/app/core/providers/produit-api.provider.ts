@@ -33,4 +33,12 @@ export class ProduitApi {
 
     return this.http.get<Array<Produit>>(this._communServ.getFullUrl('produit/all'));
   }
+
+  getMinMaxPrix(): Observable<Array<number>> {
+    return this.http.get<Array<number>>(this._communServ.getFullUrl('produit/minmax'));
+  }
+
+  getProduit(id: number) {
+    return this.http.get<Produit>(this._communServ.getFullUrl('produit/' + id));
+  }
 }
