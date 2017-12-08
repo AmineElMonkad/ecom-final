@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Promotion} from '../../core/models/promotion';
 import {CommonService} from '../../util/common-service';
-import {ProduitPromotionApi} from '../../core/providers/produit-promotion-api';
-import {PromotionApi} from '../../core/providers/promotion-api';
+import {ProduitPromotionApi} from '../../core/providers/produit-promotion-api.provider';
+import {PromotionApi} from '../../core/providers/promotion-api.provider';
 import {Category} from "../../core/models/category";
 
 @Component({

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {PromotionListComponent} from "./promotion-list/promotion-list.component";
-import {PromotionApi} from "../core/providers/promotion-api";
-import {ProduitPromotionApi} from "../core/providers/produit-promotion-api";
+import {PromotionApi} from "../core/providers/promotion-api.provider";
+import {ProduitPromotionApi} from "../core/providers/produit-promotion-api.provider";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {RouterModule} from "@angular/router";

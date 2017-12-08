@@ -8,14 +8,13 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { ProduitListComponent } from './produit-list/produit-list.component';
 import {ProduitApi} from '../core/providers/produit-api.provider';
 import { CategorySearchPipe } from '../core/pipes/category-search.pipe';
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 // Routes
 import { ProduitsRoutes as routes } from './produit.routes';
 import { FiltreBarComponent } from './filtre-bar/filtre-bar.component';
 import { ProduitComponent } from './produit.component';
 import {MarqueApi} from '../core/providers/marque-api.provider';
-import {FormsModule} from '@angular/forms';
 import {MarqueFilterPipe} from '../core/pipes/marque-filter.pipe';
 import {MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatSliderModule} from '@angular/material';
 import {PrixFilterPipe} from '../core/pipes/prix-filter.pipe';
@@ -28,7 +27,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   imports: [
     MatSliderModule, MatCheckboxModule, MatCardModule, MatButtonModule, MatInputModule,
-    FormsModule,
+    FormsModule, ReactiveFormsModule,
     CommonModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
