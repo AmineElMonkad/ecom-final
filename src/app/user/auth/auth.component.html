@@ -1,0 +1,18 @@
+<div class="example-container">
+  <form (ngSubmit)="auth()">
+  <mat-form-field>
+    <input matInput placeholder="login" formControl="login" required>
+    <mat-error *ngIf="login.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="mot de passe" [type]="hide ? 'password' : 'text'" formControl="mdp" required>
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    <mat-error *ngIf="mdp.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+    <button mat-raised-button type="submit">Se connecter</button>
+
+    <button mat-raised-button (click)="createAccount()">Créer un compter</button>
+  </form>
+</div>

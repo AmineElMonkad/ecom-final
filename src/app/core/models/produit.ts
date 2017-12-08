@@ -3,7 +3,7 @@ import {Category} from "./category";
 import {Marque} from "./marque";
 
 export class Produit {
-  id: number;
+  id?: number;
   reference: string;
   prixUnitaire: number;
   quantite: number;

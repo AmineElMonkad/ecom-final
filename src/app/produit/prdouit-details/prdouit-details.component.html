@@ -1,0 +1,47 @@
+<!--
+<div class="container">
+  <div class="row h-100 mt-5">
+    <div class="col-12-md-3">
+      <img src="{{selectedProduit.marque.photo}}"/> {{selectedProduit.reference}}
+      avis
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <div class="container">
+        <app-photos-list [listPhotos]="listPhotos" [selectedPhoto]="selectedPhoto" class="col-md-6"></app-photos-list>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="container">
+        <div class="row">
+            {{(selectedProduit.isPromotion)? selectedProduit.prixePromotion : selectedProduit.prixUnitaire}}
+          </div>
+          <div class="row">
+            options
+          </div>
+          <div class="row">
+            ajouter panier
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  fiche technique
+</div>
+
+<div class="container">
+  avis clients
+</div>
+-->
+
+<div itemscope itemtype="https://schema.org/Product" class="row padding-top">
+
+  <app-photos-list
+    [listPhotos]="listPhotos"
+    [selectedPhoto]="selectedPhoto"
+    class="col-md-6">
+  </app-photos-list>
+</div>
