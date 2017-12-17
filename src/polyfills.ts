@@ -46,6 +46,7 @@
 import 'core-js/es7/reflect';
 
 
+
 /**
  * Required to support Web Animations `@angular/platform-browser/animations`.
  * Needed for: All but Chrome, Firefox and Opera. http://caniuse.com/#feat=web-animation
@@ -58,9 +59,19 @@ import 'core-js/es7/reflect';
  * Zone JS is required by Angular itself.
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
-// import 'hammerjs';
+
+// material
 
 
+// import 'web-animations-js';
+
+// rxjs
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/toArray';
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */

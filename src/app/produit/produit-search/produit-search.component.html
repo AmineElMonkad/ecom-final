@@ -1,0 +1,46 @@
+<div class="container" id="content">
+  <div class="row h-100 mt-5">
+    <main class="col py-5">
+      <div class="row">
+        <div class="col">
+          <div class="tab-content py-1">
+            <div>
+              <div *ngIf="isFound">
+                <!-- Single product -->
+                <div
+                  *ngFor="let produit of listProduits"
+                  class="product-grid__product-wrapper">
+                  <!-- | marqueFilter: filtre.marques-->
+                  <div class="product-grid__product">
+                    <div class="product-grid__img-wrapper">
+                      <img
+                        src="{{(produit.listPhotos[0]== null) ? '../../../assets/wheel.svg' : produit.listPhotos[0].urlImage}}"
+                        alt="Img" class="product-grid__img"/>
+                    </div>
+                    <span class="product-grid__title">{{produit.marque.libelle}} {{produit.reference}} </span>
+                    <span class="product-grid__price">{{produit.prixUnitaire}}€</span>
+                    <div class="product-grid__extend-wrapper">
+                      <div class="product-grid__extend">
+                        <p class="product-grid__description">{{(produit.quantite>0)?'disponible':'non disponible'}}
+                          ajouter avis</p>
+                        <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Ajouter au Panier</span>
+                        <span (click)="getDetails(produit.id)" class="product-grid__btn product-grid__view"><i
+                          class="fa fa-eye"></i> Détails</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!isFound">
+                Aucun résultat correspondent à la recherche
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>

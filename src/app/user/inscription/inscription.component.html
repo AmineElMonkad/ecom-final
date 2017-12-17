@@ -1,3 +1,74 @@
-<p>
-  inscription works!
-</p>
+<div class="col-md-8" style="position: center">
+
+  <app-alert  [type]="type" [message]="messageErreur"></app-alert>
+  <mat-card xmlns="http://www.w3.org/1999/html">
+    <mat-card-title>Inscription</mat-card-title>
+
+    <mat-card-content>
+      <form [formGroup]="userForm" (submit)="createAccount()">
+        <section class="example-section">
+          <mat-form-field>
+            <input matInput placeholder="nom" formControlName="nom" required (click)="resetAlert()">
+            <!--<mat-error *ngIf="login.invalid">{{getErrorMessage()}}</mat-error>-->
+          </mat-form-field>
+        </section>
+        <section class="example-section">
+          <mat-form-field>
+            <input matInput placeholder="prénom" formControlName="prenom" required (click)="resetAlert()">
+            <!--<mat-error *ngIf="login.invalid">{{getErrorMessage()}}</mat-error>-->
+          </mat-form-field>
+        </section>
+
+        <section class="example-section">
+          <mat-form-field>
+        <textarea matInput placeholder="adresse" matTextareaAutosize matAutosizeMinRows="2"
+                  matAutosizeMaxRows="5" formControlName="adresse" (click)="resetAlert()"></textarea>
+            <!--<mat-error *ngIf="login.invalid">{{getErrorMessage()}}</mat-error>-->
+          </mat-form-field>
+        </section>
+
+        <mat-form-field class="example-full-width">
+          <span matPrefix>+33 &nbsp;</span>
+          <input type="tel" matInput placeholder="Telephone" formControlName="telephone" (click)="resetAlert()">
+          <mat-icon color="secondary" matSuffix >phone</mat-icon>
+
+        </mat-form-field>
+
+        <section class="example-section">
+          <mat-form-field>
+            <input matInput placeholder="Email" formControlName="mail" required (click)="resetAlert()">
+            <!--<mat-error *ngIf="login.invalid">{{getErrorMessage()}}</mat-error>-->
+          </mat-form-field>
+        </section>
+
+
+        <section class="example-section">
+          <mat-form-field>
+            <input matInput placeholder="login" formControlName="login" required (click)="resetAlert()">
+            <!--<mat-error *ngIf="login.invalid">{{getErrorMessage()}}</mat-error>-->
+          </mat-form-field>
+        </section>
+
+        <section class="example-section">
+          <mat-form-field>
+            <input matInput placeholder="mot de passe" [type]="hide ? 'password' : 'text'" formControlName="mdp" required (click)="resetAlert()">
+            <mat-icon color="secondary" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            <!--<mat-error *ngIf="mdp.invalid">{{getErrorMessage()}}</mat-error>-->
+          </mat-form-field>
+        </section>
+
+        <!--<section class="example-section">
+          <mat-form-field>
+            <input matInput placeholder="répéter mot de passe" [type]="hide ? 'password' : 'text'" formControlName="mdpR" required>
+            <mat-icon color="secondary" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            &lt;!&ndash;<mat-error *ngIf="mdp.invalid">{{getErrorMessage()}}</mat-error>&ndash;&gt;
+          </mat-form-field>
+        </section>-->
+        <section class="example-section">
+          <button mat-raised-button type="submit">Créer un compter</button>
+        </section>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+

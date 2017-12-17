@@ -6,9 +6,9 @@
 <div>
   <!--{{_commonService.stringfyJson(filtre)}}-->
         <!-- Single product -->
-        <div *ngFor="let produit of (listProduits | categorySearch: cat | marqueFilter: filtre.marques | prixFilter: filtre.prix )" class="product-grid__product-wrapper">
-          <!-- | marqueFilter: filtre.marques-->
-          <div class="product-grid__product">
+  <div class="row">
+        <div *ngFor="let produit of (listProduits | categorySearch: cat | marqueFilter: filtre.marques | prixFilter: filtre.prix  | slice: paginationFrom(pageEvent) : paginationTo(pageEvent)); let size = count" class="product-grid__product-wrapper">
+          <div *ngIf="pageEvent" class="product-grid__product">
             <div class="product-grid__img-wrapper">
               <img src="{{(produit.listPhotos[0]== null) ? '../../../assets/wheel.svg' : produit.listPhotos[0].urlImage}}" alt="Img" class="product-grid__img" />
             </div>
@@ -23,7 +23,18 @@
             </div>
           </div>
         </div>
+  </div>
 
+  <div class="row centered" style="align-content: center">
+    <mat-paginator style="position: fixed; align-content: center"
+                   [length]="listProduits.length"
+                   [pageSize]="6"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="pageEvent = $event">{{pageEvent}}
+    </mat-paginator>
+  </div>
 </div>
+
+
       <!--</div>-->
     <!--</div>-->

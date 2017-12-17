@@ -8,7 +8,6 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { ProduitListComponent } from './produit-list/produit-list.component';
 import {ProduitApi} from '../core/providers/produit-api.provider';
 import { CategorySearchPipe } from '../core/pipes/category-search.pipe';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 // Routes
 import { ProduitsRoutes as routes } from './produit.routes';
@@ -16,19 +15,20 @@ import { FiltreBarComponent } from './filtre-bar/filtre-bar.component';
 import { ProduitComponent } from './produit.component';
 import {MarqueApi} from '../core/providers/marque-api.provider';
 import {MarqueFilterPipe} from '../core/pipes/marque-filter.pipe';
-import {MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatSliderModule} from '@angular/material';
 import {PrixFilterPipe} from '../core/pipes/prix-filter.pipe';
 import { PrdouitDetailsComponent } from './prdouit-details/prdouit-details.component';
 import { PhotosListComponent } from './prdouit-details/photos-list/photos-list.component';
+import { ProduitSearchComponent } from './produit-search/produit-search.component';
+import {CommunModule} from "../shared/commun.module";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
   imports: [
-    MatSliderModule, MatCheckboxModule, MatCardModule, MatButtonModule, MatInputModule,
-    FormsModule, ReactiveFormsModule,
-    CommonModule,
+   // MatSliderModule, MatCheckboxModule, MatCardModule, MatButtonModule, MatInputModule, MatPaginatorModule,
+   // FormsModule, ReactiveFormsModule,
+    CommonModule, CommunModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
     TranslateModule.forRoot({
@@ -47,7 +47,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     FiltreBarComponent,
     ProduitComponent,
     PrdouitDetailsComponent,
-    PhotosListComponent]
+    PhotosListComponent,
+    ProduitSearchComponent]
   , providers: [
      { provide: CommonService, useValue: CommonService }
    , { provide: ProduitApi, useValue: ProduitApi}

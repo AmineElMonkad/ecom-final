@@ -1,3 +1,36 @@
+@import '../../../styles.scss';
+
+.mdl-badge[data-badge]:after{
+  background: $primary;
+  top: -25px;
+  right: -8px;
+  font-size: 11px;
+  width: 15px;
+  height: 15px;
+}
+
+.mat-icon-button{
+  border: none;
+  background: none !important;
+
+}
+
+.btn-outline-primary:focus,.btn-outline-primary:hover{
+   background-color: $primary;
+   color: white;
+   border-color: $primary;
+ }
+
+.btn-outline-primary{
+  color: $primary;
+  border-color: $primary;
+}
+
+.mat-icon{
+  color: $secondary;
+}
+
+
 ul li a {
   display:block;
   color:#4c5154;
@@ -16,7 +49,9 @@ ul li a:hover, ul li a:focus {
   box-shadow: none;
 }
 
+/*
 @import '~@angular/material/theming';
 @include mat-core();
 
 $primary: mat-palette($mat-pink,200);
+*/

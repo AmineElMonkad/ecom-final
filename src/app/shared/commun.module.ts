@@ -11,7 +11,15 @@ import {NgModule} from '@angular/core';
 import {commun} from './commun.routes';
 import {CommonService} from '../util/common-service';
 import {CommonModule} from '@angular/common';
-import {MatIconModule} from "@angular/material";
+import {
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule,
+  MatPaginatorModule, MatSliderModule
+} from "@angular/material";
+// import {StoreModule} from "@ngrx/store";
+
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { AlertComponent } from './alert/alert.component';
+import {AngularWebStorageModule} from "angular-web-storage";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -19,11 +27,18 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    MenuComponent],
+    MenuComponent,
+    AlertComponent
+  ],
   imports: [
-    MatIconModule,
+    MatSliderModule, MatCheckboxModule, MatCardModule, MatButtonModule, MatInputModule, MatPaginatorModule, MatIconModule,
+    MatFormFieldModule,
+    AngularWebStorageModule,
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
+   // StoreModule.forRoot(reducer),
     RouterModule.forRoot(commun),
     TranslateModule.forRoot({
       loader: {
@@ -37,7 +52,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: CategoryApi, useValue: CategoryApi },
     { provide: CommonService, useValue: CommonService }
   ]
-  , exports : [MenuComponent]
+  , exports : [MenuComponent, AlertComponent,
+    MatSliderModule, MatCheckboxModule, MatCardModule, MatButtonModule, MatInputModule, MatPaginatorModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, MatIconModule]
 })
 
 export class CommunModule { }

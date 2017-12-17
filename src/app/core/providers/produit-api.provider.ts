@@ -41,4 +41,8 @@ export class ProduitApi {
   getProduit(id: number) {
     return this.http.get<Produit>(this._communServ.getFullUrl('produit/' + id));
   }
+
+  getProduitByKeyword(mc: String): Observable<Array<Produit>> {
+    return this.http.get<Array<Produit>>(this._communServ.getFullUrl('produit/searchProduct/' + mc));
+  }
 }

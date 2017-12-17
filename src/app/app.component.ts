@@ -1,9 +1,6 @@
-import {Component, SecurityContext} from '@angular/core';
-import {CategoryApi} from './core/providers/category-api.provider';
+import {Component} from '@angular/core';
 import {MarqueApi} from './core/providers/marque-api.provider';
-import {Marque} from './core/models/marque';
 import {CommonService} from './util/common-service';
-import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-root',
@@ -14,7 +11,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class AppComponent {
   title = 'app';
 
-  constructor( private _marqueApi: MarqueApi, private _commonService: CommonService) {}
+  constructor( ) {}
 
   ngOnInit() {
   }

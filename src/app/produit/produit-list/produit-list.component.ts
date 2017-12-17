@@ -5,6 +5,7 @@ import {Produit} from '../../core/models/produit';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {PromiseObservable} from "rxjs/observable/PromiseObservable";
 import {Marque} from "../../core/models/marque";
+import {PageEvent} from "@angular/material";
 
 
 @Component({
@@ -20,6 +21,12 @@ export class ProduitListComponent implements OnInit {
   @Input()
   filtre: { marques: Array<Marque>, prix: number } = { marques: [], prix: 0};
 
+  /* pagination */
+
+  pageSizeOptions = [6, 9, 12, 15];
+
+  // MatPaginator Output
+  pageEvent: PageEvent;
   constructor(public _commonService: CommonService, private _produitApi: ProduitApi
   , public route: ActivatedRoute, public router: Router
   ) { }
@@ -27,6 +34,9 @@ export class ProduitListComponent implements OnInit {
   ngOnInit() {
     this.getAllProduits();
     this.getSelectedCategory();
+
+    this.pageEvent = new PageEvent;
+    this.pageEvent.pageIndex = 0;
   }
 
   getAllProduits() {
@@ -51,5 +61,21 @@ export class ProduitListComponent implements OnInit {
   getDetails(produitId: number) {
     this.router.navigate(['produit/details', {id: produitId}]);
   }
+
+
+
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+  }
+
+  paginationFrom(pageEvent) {
+    return ((pageEvent.pageIndex === 0) ? pageEvent.pageIndex : (pageEvent.pageIndex) * pageEvent.pageSize );
+  }
+
+  paginationTo(pageEvent) {
+    return this.paginationFrom(pageEvent) + 6;
+  }
+
 
 }

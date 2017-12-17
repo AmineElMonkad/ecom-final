@@ -2,7 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import {CategoryApi} from '../../core/providers/category-api.provider';
 import {CommonService} from '../../util/common-service';
 import {Category} from '../../core/models/category';
- import {Router} from "@angular/router";
+ import {Router} from '@angular/router';
+
+
+import * as panier from '../panier/reduce/panier';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {SessionStorageService} from "angular-web-storage";
+import {Client} from "../../core/models/client";
+
 
 @Component({
   selector: 'app-mon-menu',
@@ -11,13 +18,27 @@ import {Category} from '../../core/models/category';
   , providers: [ CategoryApi, CommonService]
 })
 export class MenuComponent implements OnInit {
-  listCateogry: Array<Category>;
+  /*comande$: Observable<Commande>;
+  n*/bItems: number;
 
+  listCateogry: Array<Category>;
+  public searchForm: FormGroup;
+
+  connectedClient: Client;
   constructor(private _commonService: CommonService, private _categoryService: CategoryApi
-               , public router: Router
-  ) { }
+               , public router: Router, public session: SessionStorageService
+            //   , store: Store<panier.Etat>
+  ) {
+   // this.comande$ = store.select(panier.getCommande);
+ // this.comande$.map((commande) => this.nbItems = commande.listProduitsCommandes.length);
+}
 
   ngOnInit() {
+    this.connectedClient = this.session.get('user');
+     this.searchForm = new FormGroup({mc: new FormControl('', {
+       validators: Validators.required
+       // , updateOn: 'submit'
+     })});
     this.getAllCategories();
      this.listCateogry[0].active = 'active';
   }
@@ -37,5 +58,20 @@ export class MenuComponent implements OnInit {
 
   selectUser(component) {
     this.router.navigate(['user/' + component]);
+  }
+
+
+  doSearch() {
+    this.router.navigate(['produit/searchProduct/' + this.searchForm.get('mc').value]); // , this.searchForm.get('mc').value]
+    location.reload();
+  }
+
+  isConnected(): boolean {
+    // alert(this.connectedClient);
+    return ! this._commonService.isEmptyObject(this.connectedClient);
+  }
+
+  disconnect() {
+    this.session.remove('user');
   }
 }
