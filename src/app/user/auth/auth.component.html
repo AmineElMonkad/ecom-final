@@ -20,13 +20,14 @@
   </mat-form-field>
     </section>
     <section class="example-section">
-    <button mat-raised-button type="submit">Se connecter</button>
+    <button mat-raised-button type="submit" [disabled]=" !userForm.valid">Se connecter</button>
     </section>
     <section class="example-section">&nbsp;</section>
     <section class="example-section">
-    <button mat-raised-button (click)="createAccount()">Créer un compter</button>
     </section>
   </form>
+    <button mat-raised-button (click)="createAccount()">Créer un compter</button>
+
   </mat-card-content>
   </mat-card>
 </div>

@@ -18,15 +18,23 @@ export class AuthComponent implements OnInit {
   public userForm: FormGroup;
   private connectedClient: Client;
   hide = true;
-
+  previousUrl:string;
   @Output()  public type ;
   @Output() public messageErreur: String;
 
-  constructor(public _commonService: CommonService, private _clientApi: ClientApi, public router: Router, private _location: Location, public session: SessionStorageService) { }
+  constructor(public _commonService: CommonService, private _clientApi: ClientApi,
+              public router: Router, private _location: Location, public session: SessionStorageService) {
+  }
 
   ngOnInit() {
+   /* this.router.events
+      .subscribe((event) => {
+        if (event instanceof NavigationEvent) {
+          this.previousUrl = event.uri;
+          console.log(this.previousUrl);}
+      });*/
 
-    this.messageErreur = '';
+      this.messageErreur = '';
     this.userForm = new FormGroup({
       login: new FormControl('', {
         validators: Validators.required

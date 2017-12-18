@@ -1,8 +1,9 @@
 
 import {Routes} from '@angular/router';
-import {MenuComponent} from "./menu/menu.component";
+import {PanierComponent} from './panier/panier/panier.component';
 
 export const commun: Routes  = [
+  { path: 'panier', component: PanierComponent }
   // { path: 'menu', component: MenuComponent }
   /*{
     path: 'product',

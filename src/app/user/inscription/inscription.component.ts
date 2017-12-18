@@ -22,6 +22,9 @@ export class InscriptionComponent implements OnInit {
   constructor(public _commonService: CommonService, private _clientApi: ClientApi, public router: Router, private _location: Location) { }
 
   ngOnInit() {
+    let mailValidator = [];
+    mailValidator.push(Validators.required);
+    mailValidator.push(Validators.email);
     this.userForm = new FormGroup({
       nom: new FormControl('', {
         validators: Validators.required
@@ -38,7 +41,7 @@ export class InscriptionComponent implements OnInit {
       Telephone : new FormControl('') ,
 
       mail: new FormControl('', {
-        validators: Validators.required
+        validators: Validators.compose(mailValidator)
         // , updateOn: 'submit'
       }) ,
 
