@@ -10,9 +10,13 @@ export class PhotosListComponent implements OnInit {
 
   @Input() listPhotos: Array<Photo>;
   @Input() selectedPhoto: Photo;
+
+
   constructor() { }
 
   ngOnInit() {
+    // this.selectedPhoto = this.listPhotos[1];
+    this.onMouseOver(this.selectedPhoto);
   }
 
   onMouseOver(image: Photo) {

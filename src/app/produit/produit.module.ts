@@ -26,8 +26,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   imports: [
-   // MatSliderModule, MatCheckboxModule, MatCardModule, MatButtonModule, MatInputModule, MatPaginatorModule,
-   // FormsModule, ReactiveFormsModule,
     CommonModule, CommunModule,
     HttpClientModule,
     RouterModule.forRoot(routes),

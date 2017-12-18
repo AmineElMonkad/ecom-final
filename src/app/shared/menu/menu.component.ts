@@ -60,6 +60,9 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['user/' + component]);
   }
 
+  openCart() {
+    this.router.navigate(['panier']);
+  }
 
   doSearch() {
     this.router.navigate(['produit/searchProduct/' + this.searchForm.get('mc').value]); // , this.searchForm.get('mc').value]

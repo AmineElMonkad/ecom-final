@@ -4,6 +4,7 @@ import {CommonService} from '../../util/common-service';
 import {ProduitPromotionApi} from '../../core/providers/produit-promotion-api.provider';
 import {PromotionApi} from '../../core/providers/promotion-api.provider';
 import {Category} from "../../core/models/category";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-promotion-list',
@@ -16,7 +17,7 @@ export class PromotionListComponent implements OnInit {
 
 
 
-  constructor(private _commonService: CommonService, private _promotionService: PromotionApi, private _produitPromotionService: ProduitPromotionApi) { }
+  constructor(private _commonService: CommonService, private _promotionService: PromotionApi, private _produitPromotionService: ProduitPromotionApi, public router: Router) { }
 
   ngOnInit() {
      this.getPendingPromotions();
@@ -36,6 +37,10 @@ export class PromotionListComponent implements OnInit {
           }
         );
       });
+  }
+
+  getDetails(produitId: number, taux?: number, pourcentage?: number) {
+    this.router.navigate(['produit/details', {id: produitId, isPromotion: true, taux: taux, pourc: pourcentage}]);
   }
 
 }

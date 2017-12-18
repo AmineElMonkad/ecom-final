@@ -34,10 +34,11 @@ export class AlertComponent implements OnChanges {
         case  'warning': {this.staffError = false;
           this.staffSuccess = false;
           this.staffWarning = true; break; }
-        default : {
+          default : {
           this.staffError = false;
           this.staffSuccess = false;
           this.staffWarning = false;
+          // alert(this.staffError);
         }
 
       }

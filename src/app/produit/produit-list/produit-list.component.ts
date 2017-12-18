@@ -59,7 +59,7 @@ export class ProduitListComponent implements OnInit {
 
 
   getDetails(produitId: number) {
-    this.router.navigate(['produit/details', {id: produitId}]);
+    this.router.navigate(['produit/details', {id: produitId, isPromotion: false}]);
   }
 
 

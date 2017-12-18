@@ -70,7 +70,7 @@ export class AuthComponent implements OnInit {
   }
 
   resetAlert() {
-    this.messageErreur = 'reset';
+    this.type = 'reset';
   }
   createAccount() {
     this.router.navigate(['user/inscription']);

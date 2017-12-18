@@ -2,8 +2,8 @@
 
 .mdl-badge[data-badge]:after{
   background: $primary;
-  top: -25px;
-  right: -8px;
+  top: -23px;
+  right: -5px;
   font-size: 11px;
   width: 15px;
   height: 15px;
@@ -38,20 +38,13 @@ ul li a {
 }
 
 ul li a:hover, ul li a:focus {
-  border-color:#db2d2c;
-  border-bottom: 1px solid  #db2d2c;
+  border-color: $primary;
+  border-bottom: 1px solid  $primary;
   box-shadow: none;
  }
 
 .navbar-light .navbar-nav .active > .nav-link{
-  border-color:#db2d2c;
-  border-bottom: 1px solid  #db2d2c;
+  border-color: $primary;
+  border-bottom: 1px solid  $primary;
   box-shadow: none;
 }
-
-/*
-@import '~@angular/material/theming';
-@include mat-core();
-
-$primary: mat-palette($mat-pink,200);
-*/

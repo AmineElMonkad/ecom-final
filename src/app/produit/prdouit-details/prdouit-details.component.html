@@ -1,44 +1,84 @@
-<!--
-<div class="container">
+<div class="container" xmlns="http://www.w3.org/1999/html">
+
   <div class="row h-100 mt-5">
     <div class="col-12-md-3">
       <img src="{{selectedProduit.marque.photo}}"/> {{selectedProduit.reference}}
-      avis
+    </div>
+    <div class="col-12-md-3">
+      <app-rating [rating]="4" [itemId]="'53 avis'"></app-rating>
+      <!--<star-rating-comp [starType]="'svg'" [rating]="4.5"></star-rating-comp>-->
+    </div>
+    <div class="col-12-md-3">
+      25 évaluations
+      <!--<star-rating-comp [starType]="'svg'" [rating]="4.5"></star-rating-comp>-->
     </div>
   </div>
   <div class="row">
-    <div class="col-8">
-      <div class="container">
-        <app-photos-list [listPhotos]="listPhotos" [selectedPhoto]="selectedPhoto" class="col-md-6"></app-photos-list>
+    <div class="col-7">
+      <div itemscope class="row padding-top">
+        <app-photos-list [listPhotos]="listPhotos" [selectedPhoto]="selectedPhoto"  class="col-md-6">
+        </app-photos-list>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-5">
       <div class="container">
-        <div class="row">
-            {{(selectedProduit.isPromotion)? selectedProduit.prixePromotion : selectedProduit.prixUnitaire}}
-          </div>
-          <div class="row">
-            options
-          </div>
-          <div class="row">
-            ajouter panier
-          </div>
+        <mat-card xmlns="http://www.w3.org/1999/html">
+          <mat-card-content>
+            <div *ngIf="isPromotion === 'true';then content else other_content"></div>
+            <ng-template #content>
+              <span class="product-grid__oldprice ">  <s data-text="Strikethrough">{{selectedProduit.prixUnitaire}}€</s></span>
+              <span class="product-grid__price">-{{(tauxPromo === null || tauxPromo === 0)? pourcentagePromo+"€": tauxPromo +'%'}}</span> <span class="product-grid__oldprice">{{prix}}€</span>
+            </ng-template>
+            <ng-template #other_content>
+              <span class="product-grid__oldprice">{{prix}}€</span>
+            </ng-template>
+          </mat-card-content>
+
+          <mat-card-content>
+            <div class="row">
+              <label>Matériaux : &nbsp;</label>{{selectedProduit.ficheTechnique.materiele}}
+            </div>
+
+            <div class="row">
+              <label>Poid : &nbsp;</label>{{selectedProduit.ficheTechnique.poid}}
+            </div>
+
+            <div class="row">
+              <label>Taille des roues : &nbsp;</label>{{selectedProduit.ficheTechnique.tailleRoues}}"
+            </div>
+
+            <div class="row">
+
+                <label>Dérailleur : &nbsp;</label>{{selectedProduit.ficheTechnique.derailleur}}
+
+            </div>
+
+            <div *ngIf="selectedProduit.category.id ==  5">
+              <div class="row">
+                <label>Batterie : &nbsp;</label>{{selectedProduit.ficheTechnique.batterie}}
+              </div>
+
+              <div class="row">
+                <label>Poid: </label>{{selectedProduit.ficheTechnique.batteriePoid}}
+              </div>
+
+              <div class="row">
+                <label>Puissance : </label>{{selectedProduit.ficheTechnique.batteriePuissance}}"
+              </div>
+            </div>
+
+            <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Ajouter au Panier</span>
+            <span (click)="return()" class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> Retour</span>
+
+          </mat-card-content>
+        </mat-card>
+
       </div>
     </div>
   </div>
-</div>
-
-<div class="container">
-  fiche technique
 </div>
 
 <div class="container">
   avis clients
 </div>
--->
 
-<div itemscope class="row padding-top">
-
-  <app-photos-list [listPhotos]="listPhotos" [selectedPhoto]="selectedPhoto" class="col-md-6">
-  </app-photos-list>
-</div>

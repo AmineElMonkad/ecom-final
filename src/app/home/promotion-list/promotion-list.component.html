@@ -49,7 +49,7 @@
                   <div class="product-grid__extend" style="width: 100%">
                     <p class="product-grid__description" >{{(produitPromo.produit.quantite>0)?'disponible':'non disponible'}}</p>
                     <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Ajouter au Panier</span>
-                    <span class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> Détails</span>
+                    <span (click)="getDetails(produitPromo.produit.id, produitPromo.reduction, produitPromo.tauxReduction)" class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> Détails</span>
                   </div>
                 </div>
               </div>

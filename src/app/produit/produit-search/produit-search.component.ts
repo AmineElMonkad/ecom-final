@@ -38,5 +38,7 @@ export class ProduitSearchComponent implements OnInit {
     );
   }
 
-
+  getDetails(produitId: number) {
+    this.router.navigate(['produit/details', {id: produitId, isPromotion: false}]);
+  }
 }

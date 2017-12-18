@@ -5,11 +5,12 @@ import {CommonService} from '../../util/common-service';
 import {ProduitApi} from '../../core/providers/produit-api.provider';
 import {ActivatedRoute, Params} from "@angular/router";
 import {PromiseObservable} from "rxjs/observable/PromiseObservable";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-prdouit-details',
   templateUrl: './prdouit-details.component.html',
-  styleUrls: ['./prdouit-details.component.css'],
+  styleUrls: ['./prdouit-details.component.scss'],
   providers: [CommonService, ProduitApi]
 })
 export class PrdouitDetailsComponent implements OnInit {
@@ -18,12 +19,16 @@ export class PrdouitDetailsComponent implements OnInit {
   @Output() listPhotos: Array<Photo>;
   @Output() selectedPhoto: Photo;
 
-  constructor(public _commonService: CommonService, private _produitApi: ProduitApi, public route: ActivatedRoute) { }
+  isPromotion: any;
+  tauxPromo: number;
+  pourcentagePromo: number;
+  prix: number;
+  constructor(public _commonService: CommonService, private _produitApi: ProduitApi, public route: ActivatedRoute, private _location: Location) { }
 
   ngOnInit() {
     this.getParam();
     this.getSelectedProduit();
-    this.selectedPhoto = this.listPhotos[0];
+
   }
 
   getParam() {
@@ -31,6 +36,9 @@ export class PrdouitDetailsComponent implements OnInit {
       () => {
         this.route.params.forEach((params: Params) => {
           this.idProduit = params['id'];
+          this.isPromotion = params['isPromotion'];
+          this.tauxPromo = params['taux'];
+          this.pourcentagePromo = params['pourc'];
         });
       });
     return PromiseObservable.create(promise).share();
@@ -40,7 +48,24 @@ export class PrdouitDetailsComponent implements OnInit {
       (produit) => {
              this.selectedProduit = produit;
              this.listPhotos = produit.listPhotos;
+
+        this.selectedPhoto = this.listPhotos[0];
+
+
+        if (this.isPromotion === 'true') {
+          if (this.tauxPromo === 0) {
+            this.prix = this.selectedProduit.prixUnitaire - this.pourcentagePromo;
+          } else {
+            this.prix = this.selectedProduit.prixUnitaire - (this.selectedProduit.prixUnitaire * this.tauxPromo / 100);
+          }
+        } else {
+          this.prix = this.selectedProduit.prixUnitaire;
+        }
+
       }
     );
   }
+
+  return() { this._location.back(); }
+
 }

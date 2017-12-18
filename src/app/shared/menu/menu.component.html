@@ -17,7 +17,7 @@
 
     <ul class="navbar-nav mr-auto">
       <li *ngFor="let category of listCateogry" class="nav-item {{category.active}}">
-        <a (click)="selectItem(listCateogry.indexOf(category))" class="nav-link"> {{category.libelle}} <span class="sr-only">(current)</span></a>
+        <a (click)="selectItem(listCateogry.indexOf(category))" class="nav-link"> {{category.libelle}}<span class="sr-only">(current)</span></a>
       </li>
 
     </ul>
@@ -46,20 +46,17 @@
 
       </ul>
     </li>
+    <!-- add panier (pannier) component (Mohammed)-->
     <li class="cart">
-      <button mat-icon-button style="border: none;background: none !important;" >
+      <button mat-icon-button style="border: none;background: none !important;" (click)="openCart()">
         <mat-icon>shopping_cart</mat-icon>
-        <div  class="material-icons mdl-badge mdl-badge--overlap"[attr.data-badge]="0"></div>
+        <div  class="material-icons mdl-badge mdl-badge--overlap" data-badge="1"></div>
+        <!--<div class="icon material-icons mdl-badge" data-badge="1">shopping_cart</div>-->
       </button>
 
     </li>
-    <!--<li class="nav-item">
-      <button style="border: none" mat-icon-button><mat-icon>add_shopping_cart</mat-icon> <span class="badge">7</span></button>
-      &lt;!&ndash; (click)="selectCard()"&ndash;&gt;
-    </li>-->
-</ul>
 
-    <!-- add panier (pannier) component (Mohammed)-->
+</ul>
 
   </div>
 </nav>

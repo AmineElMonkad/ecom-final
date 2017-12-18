@@ -1,7 +1,7 @@
 <div class="image-container" *ngIf="listPhotos">
-  <div class="thumbnails-vertical-container">
+  <div class="thumbnails-vertical-container" >
     <button class="thumbnails-thumbnail-button" *ngFor="let image of listPhotos">
-      <img class="thumbnails-thumbnail"
+      <img class="thumbnails-thumbnail" style="width: 80px!important; height: 80px !important;"
            [src]="image.urlImage"
            (mouseover)="onMouseOver(image)">
     </button>
