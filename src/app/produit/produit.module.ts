@@ -11,7 +11,7 @@ import { CategorySearchPipe } from '../core/pipes/category-search.pipe';
 
 // Routes
 import { ProduitsRoutes as routes } from './produit.routes';
-import { FiltreBarComponent } from './filtre-bar/filtre-bar.component';
+import { FiltreBarComponent } from './produit-list/filtre-bar/filtre-bar.component';
 import { ProduitComponent } from './produit.component';
 import {MarqueApi} from '../core/providers/marque-api.provider';
 import {MarqueFilterPipe} from '../core/pipes/marque-filter.pipe';
@@ -20,6 +20,7 @@ import { PrdouitDetailsComponent } from './prdouit-details/prdouit-details.compo
 import { PhotosListComponent } from './prdouit-details/photos-list/photos-list.component';
 import { ProduitSearchComponent } from './produit-search/produit-search.component';
 import {CommunModule} from "../shared/commun.module";
+import { AddPanierComponent } from './add-panier/add.panier.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -46,11 +47,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProduitComponent,
     PrdouitDetailsComponent,
     PhotosListComponent,
-    ProduitSearchComponent]
+    ProduitSearchComponent,
+    AddPanierComponent]
   , providers: [
      { provide: CommonService, useValue: CommonService }
    , { provide: ProduitApi, useValue: ProduitApi}
-    , { provide: MarqueApi, useValue: MarqueApi}
+    , { provide: MarqueApi, useValue: MarqueApi},
   ]
   // to update at laste to export only super component
   , exports : [ProduitComponent]

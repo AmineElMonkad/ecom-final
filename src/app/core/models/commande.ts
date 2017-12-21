@@ -6,5 +6,7 @@ export class Commande {
   client?: Client;
   dateCommande: Date;
   listProduitsCommandes: Array<Produit>;
+  prixCommande: number;
+  modePayement: string;
 }
 

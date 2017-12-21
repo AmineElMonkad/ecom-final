@@ -8,8 +8,6 @@ import {RouterModule} from '@angular/router';
 import {UserRoutes as routes} from './user.routes';
 import {CommonService} from "../util/common-service";
 import {ClientApi} from "../core/providers/client-api.provider";
-import { MatFormFieldModule, MatIconModule} from '@angular/material';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommunModule} from "../shared/commun.module";
 
 

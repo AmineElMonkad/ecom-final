@@ -1,60 +1,329 @@
-<mat-horizontal-stepper [linear]="isLinear">
-  <mat-step [stepControl]="panierForm" >
-    <form [formGroup]="panierForm">
-    <ng-template matStepLabel>Panier</ng-template>
-    <mat-card xmlns="http://www.w3.org/1999/html" *ngIf="step == 1">
-      <mat-card-title>Produits à commander</mat-card-title>
-      <mat-card-content>
-        <mat-list>
-          <mat-list-item *ngFor="let produitCommande of produitsCommandes">
-            <img matListAvatar src="{{produitCommande.listPhotos[0].urlImage}}" >
-            <h3 matLine> {{produitCommande.marque.libelle}} </h3>
-            <p matLine>
-              <span> {{produitCommande.reference}} </span>
-              <span class="demo-2"> -- {{produitCommande.prixUnitaire}} </span>
-            </p>
-          </mat-list-item>
-        </mat-list>
-      </mat-card-content>
-      <button mat-button matStepperNext (click)="validateCard()">Suivant</button>
-      <button mat-button (click)="cancel()" >Annuler</button>
+<div
+  *ngIf="_communService.stringfyJson(_communService.isEmptyObject(panier.produitsCommandes)) === 'false';then content else other_content"></div>
+<ng-template #other_content>
+  <mat-card xmlns="http://www.w3.org/1999/html">
+    <mat-card-content style="align-content: center">
+      Panier Vide <i class="material-icons">remove_shopping_cart</i>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+<ng-template #content>
+  <app-alert  [type]="type" [message]="messageErreur"></app-alert>
+  <mat-horizontal-stepper [linear]="isLinear">
+    <mat-step [stepControl]="panierForm">
+      <form [formGroup]="panierForm">
+        <ng-template matStepLabel>Panier</ng-template>
+        <mat-card xmlns="http://www.w3.org/1999/html" *ngIf="step === 1">
+          <!---->
+          <div class="container">
+            <div class="row">
+              <div class="col-8">
+                <div class="content">
+                  <div class="row">
+                    <div class="col-1">
+                      <button mat-icon-button (click)="viderPanier()">
+                        <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+                      </button>
+                    </div>
+                    <div class="col-6" align="left">
+                      <mat-card-title>Produits à commander ({{panier.nbElement}})</mat-card-title>
+                    </div>
+
+                    <div class="col-4" align="right">
+                      <mat-card-title>Total {{panier.totalAPayer}} €</mat-card-title>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <mat-card-content>
+                        <mat-list>
+                          <mat-list-item *ngFor="let produitCommande of panier.produitsCommandes">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                              <img matListAvatar src="{{produitCommande.listPhotos[0].urlImage}}">
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                              <h3 matLine> {{produitCommande.marque.libelle}} </h3>
+                              <div class="short-div"><span matLine> {{produitCommande.reference}} </span></div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                              <div class="short-div">
+                                <button mat-icon-button (click)="deleteProduit(produitCommande)">
+                                  <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+                                </button>
+                              </div>
+                              <div class="short-div"><span class="demo-2" align="right"> {{produitCommande.prixUnitaire}} €</span>
+                              </div>
+                            </div>
+
+                          </mat-list-item>
+                        </mat-list>
+                      </mat-card-content>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="containt" *ngIf="step === 1">
+                  <div class="row">
+                    <div class="col-6">Total Panier:</div>
+                    <div class="col-6">{{panier.totalAPayer}} €</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">Livraison</div>
+                    <div class="col-6"><span style="color: #20bd99;">Gratuite </span></div>
+                  </div>
+                  <div class="row">&nbsp;</div>
+                  <div class="row">
+                    <div class="col-6" style="font-weight: bold;">Total A Payer</div>
+                    <div class="col-6" style="font-weight: bold;">{{panier.totalAPayer}}€</div>
+                  </div>
+                  <div class="row">&nbsp;</div>
+                  <div *ngIf="isValidateUser">
+                    <div class="row">
+                      <button mat-raised-button color="primary" matStepperNext (click)="validateCard()"
+                              style=" width: 100%; text-align: center">Suivant
+                      </button>
+                    </div>
+                  </div>
+                  <div *ngIf="!isValidateUser">
+                    <div class="row">
+                      <button mat-raised-button color="primary" (click)="validateCard()"
+                              style=" width: 100%; text-align: center">Suivant
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row">&nbsp;</div>
+                  <div class="row">
+                    <button mat-raised-button (click)="cancel()"
+                            style="background-color:#eee; width: 100%; text-align: center">Annuler
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+
+        <!--<span class="product-grid__btn product-grid__add-to-cart" matStepperNext (click)="validateCard()"><i class="fa fa-cart-arrow-down"></i>Valider</span>-->
+      </form>
+    </mat-step>
 
 
-    </mat-card>
+    <mat-step [stepControl]="adressForm">
+      <form [formGroup]="adressForm">
+        <ng-template matStepLabel>Livraison</ng-template>
+        <div class="container">
+          <div class="row">
+            <div class="col-8">
+              <mat-card xmlns="http://www.w3.org/1999/html" *ngIf="step === 2">
+                <!---->
+                <mat-card-title>Adresse de livraison</mat-card-title>
+                <mat-card-content>
+                  <textarea matInput placeholder="adresse de livraison" matTextareaAutosize matAutosizeMinRows="2"
+                            matAutosizeMaxRows="5" formControlName="adresseLivraison" required></textarea>
+                </mat-card-content>
+              </mat-card>
+            </div>
+            <div class="col-4">
+              <div class="containt" *ngIf="step === 2">
+                <div class="row">
+                  <button mat-raised-button color="primary" matStepperNext [disabled]=" !adressForm.valid"
+                          (click)="validateAdress()" style=" width: 100%; text-align: center">Suivant
+                  </button>
+                </div>
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                  <button mat-raised-button matStepperPrevious (click)="returnStep()"
+                          style="background-color:#eee; width: 100%; text-align: center">Retour
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<span class="product-grid__btn product-grid__add-to-cart" matStepperNext (click)="validateCard()"><i class="fa fa-cart-arrow-down"></i>Valider</span>-->
+      </form>
+    </mat-step>
 
-    <!--<span class="product-grid__btn product-grid__add-to-cart" matStepperNext (click)="validateCard()"><i class="fa fa-cart-arrow-down"></i>Valider</span>-->
-    </form>
-  </mat-step>
+    <mat-step [stepControl]="commandeForm">
+      <form [formGroup]="commandeForm" (submit)="validateCmd()">
+        <ng-template matStepLabel>Commande</ng-template>
+        <div class="container">
+          <div class="row">
+            <div class="col-8">
+              <mat-card xmlns="http://www.w3.org/1999/html" *ngIf="step === 3">
+                <!---->
+                <mat-card-title>Paiement</mat-card-title>
+                <mat-card-content>
+                  <div class="content">
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="content">
+                          <mat-radio-group class="example-radio-group" formControlName="modePaiement" required>
+                            <mat-radio-button class="example-radio-button" value="visa">
+                              <img src="https://www.underconsideration.com/brandnew/archives/mastercard_logo.png"
+                                   height="100" width="100"/>
+                            </mat-radio-button>
+                            <br/>
+                            <mat-radio-button class="example-radio-button" value="paypal">
+                              <img
+                                src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom.png?01RI=E780983E7337095,cm:akamai.mathtag.com%2fevent%2fimg%3fakam_state%3d0%26no_log%26mt_nsync%26mm_bnc%26relay%3dhttp%253A%252F%252Fak-sync.datasvc.mediamath.com%252Ffcgi.insight-drp%253Furl%253D-%2526referer%253Drelaytest%2526ip_address%253D127.0.0.1%2526cpcode%253D52202%2526akid%253D3NoSIUKT-2yHOGDAafOxSRj3Ug1a8kWQujHi0lpiN9sddYSFbSF1t1A%2526blob-id%253D7%2526blob%253D%255BMM_UUID%255D%255Cr%255Cn&01NA=ck&"
+                                height="100" width="100"/>
+                            </mat-radio-button>
+                          </mat-radio-group>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="content">
+                          <div class="row">
+                            <mat-form-field class="example-full-width">
+                              <input type="tel" matInput placeholder="N° carte" formControlName="numCarte" required>
+                              <mat-icon color="secondary" matSuffix>credit_card</mat-icon>
+                            </mat-form-field>
+                          </div>
+                          <div class="row">
+                            <mat-form-field>
+                              <input matInput placeholder="nom de la carte" formControlName="nomCarte" required>
+                            </mat-form-field>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <mat-form-field>
+                                <mat-select placeholder="mois">
+                                  <!--<mat-option *ngFor="let mois of moisValidites" [value]="mois">-->
+                                  <!--{{ mois }}-->
+                                  <!--</mat-option>-->
+                                  <mat-option>1</mat-option>
+                                  <mat-option>2</mat-option>
+                                  <mat-option>3</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                            </div>
+                            <div class="col-8">
+                              <mat-form-field>
+                                <mat-select placeholder="annee" disableRipple formControlName="anneeExpir" required >
+                                  <mat-option *ngFor="let annee of anneesValidites" [value]="annee">{{annee}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+            <div class="col-4">
+              <div class="containt" *ngIf="step === 3">
+                <div class="row">
+                  <button mat-raised-button color="primary"  type="submit" style=" width: 100%; text-align: center">Valider</button>
+                  <!--[disabled]=" !commandeForm.valid"-->
+                </div>
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                  <button mat-raised-button matStepperPrevious (click)="returnStep()"
+                          style="background-color:#eee; width: 100%; text-align: center">Retour
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-step>
 
 
-  <mat-step [stepControl]="adressForm" >
-    <form [formGroup]="adressForm">
-      <ng-template matStepLabel>Livraison</ng-template>
-      <mat-card xmlns="http://www.w3.org/1999/html" *ngIf="step == 2">
-        <mat-card-title>Adresse de livraison</mat-card-title>
-        <mat-card-content>
-          <textarea matInput placeholder="adresse de livraison" matTextareaAutosize matAutosizeMinRows="2"
-                    matAutosizeMaxRows="5" formControlName="adresseLivraison" required></textarea>
-        </mat-card-content>
-        <button mat-button matStepperNext [disabled]=" !adressForm.valid" (click)="validateAdress()">Suivant</button>
-        <button mat-button matStepperPrevious (click)="returnStep()">Retour</button>
+  </mat-horizontal-stepper>
+</ng-template>
 
-      </mat-card>
+<!--<div class="container">
+  <div class="row">
+    <section>
 
-      <!--<span class="product-grid__btn product-grid__add-to-cart" matStepperNext (click)="validateCard()"><i class="fa fa-cart-arrow-down"></i>Valider</span>-->
-    </form>
-  </mat-step>
+      <ul class="nav nav-tabs" role="tablist">
 
-  <mat-step [stepControl]="commandeForm" >
-    <form [formGroup]="commandeForm">
-      <ng-template matStepLabel>Paiement</ng-template>
-      <mat-card xmlns="http://www.w3.org/1999/html" *ngIf="step == 3"> <!--  -->
-          <input formControlName="modePaiement" />
-      <button mat-button matStepperNext (click)="validateCmd()">Valider</button>
-      <button mat-button matStepperPrevious (click)="returnStep()">Retour</button>
-      </mat-card>
-  </form>
-  </mat-step>
+        <li role="presentation" class="nav-item">
+          <a href="#step1" class="nav-link active" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+            1
+          </a>
+        </li>
 
+        <li role="presentation" class="nav-item">
+          <a href="#step2" class="nav-link disabled" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+            2
+          </a>
+        </li>
+        <li role="presentation" class="nav-item">
+          <a href="#step3" class="nav-link disable" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+            3
+          </a>
+        </li>
 
-</mat-horizontal-stepper>
+        <li role="presentation" class="nav-item">
+          <a href="#complete" class="nav-link disable" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+            4
+          </a>
+        </li>
+      </ul>
+
+      <form role="form">
+        <div class="tab-content">
+          <div class="tab-pane active" role="tabpanel" id="step1">
+            <h3>Step 1</h3>
+            <p>This is step 1</p>
+            <ul class="list-inline pull-xs-right">
+              <li class="list-inline-item">
+                <button type="button" class="btn btn-primary next-step">Save and continue</button>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-pane" role="tabpanel" id="step2">
+            <h3>Step 2</h3>
+            <p>This is step 2</p>
+            <ul class="pull-xs-right">
+              <li class="list-inline-item">
+                <button type="button" class="btn btn-default prev-step">Previous</button>
+              </li>
+              <li class="list-inline-item">
+                <button type="button" class="btn btn-primary next-step">Save and continue</button>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-pane" role="tabpanel" id="step3">
+            <h3>Step 3</h3>
+            <p>This is step 3</p>
+            <ul class="list-inline pull-xs-right">
+              <li class="list-inline-item">
+                <button type="button" class="btn btn-default prev-step">Previous</button>
+              </li>
+              <li class="list-inline-item">
+                <button type="button" class="btn btn-default next-step">Skip</button>
+              </li>
+              <li class="list-inline-item">
+                <button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-pane" role="tabpanel" id="complete">
+            <h3>Complete</h3>
+            <p>You have successfully completed all steps.</p>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </form>
+    </section>
+  </div>
+</div>-->
+<!--
+<multi-step-wizard-app>
+
+  <div class="splash">
+    <div class="color-line"></div>
+    <div class="splash-title">
+      <h1>Angular Multi-Step Wizard</h1>
+      <img src="assets/images/loading-bars.svg" width="64" height="64" />
+    </div>
+  </div>
+</multi-step-wizard-app>-->

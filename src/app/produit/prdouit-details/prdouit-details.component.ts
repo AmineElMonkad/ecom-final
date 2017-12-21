@@ -1,4 +1,4 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {Produit} from '../../core/models/produit';
 import {Photo} from '../../core/models/photo';
 import {CommonService} from '../../util/common-service';
@@ -6,6 +6,8 @@ import {ProduitApi} from '../../core/providers/produit-api.provider';
 import {ActivatedRoute, Params} from "@angular/router";
 import {PromiseObservable} from "rxjs/observable/PromiseObservable";
 import {Location} from "@angular/common";
+import {LocalStorageService} from "angular-web-storage";
+import {Panier} from "../../core/models/panier";
 
 @Component({
   selector: 'app-prdouit-details',
@@ -14,6 +16,8 @@ import {Location} from "@angular/common";
   providers: [CommonService, ProduitApi]
 })
 export class PrdouitDetailsComponent implements OnInit {
+  @Input() produit: Produit;
+  localPanier: Panier;
   idProduit: number;
   selectedProduit: Produit;
   @Output() listPhotos: Array<Photo>;
@@ -23,7 +27,7 @@ export class PrdouitDetailsComponent implements OnInit {
   tauxPromo: number;
   pourcentagePromo: number;
   prix: number;
-  constructor(public _commonService: CommonService, private _produitApi: ProduitApi, public route: ActivatedRoute, private _location: Location) { }
+  constructor(public _commonService: CommonService, private _produitApi: ProduitApi, public route: ActivatedRoute, private _location: Location, public localStorage: LocalStorageService) { }
 
   ngOnInit() {
     this.getParam();
@@ -67,5 +71,25 @@ export class PrdouitDetailsComponent implements OnInit {
   }
 
   return() { this._location.back(); }
+
+  addCart() {
+    this.localPanier = this.localStorage.get('panier');
+    if (this._commonService.isEmptyObject(this.localPanier)) {
+      this.localPanier = new Panier();
+      this.localPanier.produitsCommandes = [];
+      this.localPanier.nbElement = 1;
+      // a vérifier si promo ou non
+      this.localPanier.totalAPayer = this.produit.prixUnitaire;
+    } else {
+      this.localPanier.nbElement ++;
+      // a vérifier si promo ou non
+      this.localPanier.totalAPayer += this.produit.prixUnitaire;
+    }
+
+    this.localPanier.produitsCommandes.push(this.produit);
+
+    this.localStorage.set('panier', this.localPanier);
+    location.reload(true);
+  }
 
 }

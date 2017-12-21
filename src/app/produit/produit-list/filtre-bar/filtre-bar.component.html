@@ -1,0 +1,60 @@
+
+<!--<mat-card xmlns="http://www.w3.org/1999/html">-->
+  <!--<mat-card-content>-->
+    <!--<label class="col-sm-2 control-label">Marque</label><br/>-->
+    <!--<div *ngFor="let marque of listMaruqe" class="form-group has-success">-->
+      <!--<section class="example-section">-->
+        <!--<mat-checkbox class="example-margin" [(ngModel)]="marque.isSelected">{{marque.libelle.toLocaleUpperCase()}}</mat-checkbox>-->
+      <!--</section>-->
+      <!--&lt;!&ndash;<label class="custom-control custom-checkbox  container">-->
+        <!--<input type="checkbox" [checked]="marque.isSelected" [(ngModel)]="marque.isSelected" class="custom-control-input">-->
+        <!--<span class="custom-control-indicator"></span>-->
+        <!--<span class="custom-control-description">{{marque.libelle.toLocaleUpperCase()}}</span>-->
+      <!--</label>&ndash;&gt;-->
+    <!--</div>-->
+  <!--</mat-card-content>-->
+<!--</mat-card>-->
+<!--<mat-card>-->
+  <!--<mat-card-content>-->
+    <!--<label class="col-sm-2 control-label">Prix</label><br/>-->
+    <!--&lt;!&ndash;<span class="text-small">{{minMaxPrix[0]}}</span>&ndash;&gt;-->
+    <!--<mat-slider flex [min]="minMaxPrix[0]" [max]="minMaxPrix[1]" [step]="0.5" [(ngModel)]="selectedPrix" (change)="drag()"></mat-slider>-->
+    <!--<input flex="15" type="number" [min]="minMaxPrix[0]" [max]="minMaxPrix[1]" [step]="0.5" [(ngModel)]="selectedPrix" aria-controls="value-slider"/>-->
+    <!--&lt;!&ndash;<span class="text-small">{{minMaxPrix[1]}}</span>&ndash;&gt;-->
+  <!--</mat-card-content>-->
+
+  <!--<button mat-raised-button color="primary" (click)="filtrer()">Filtrer</button>-->
+<!--</mat-card>-->
+
+
+<mat-card xmlns="http://www.w3.org/1999/html">
+  <mat-card-content>
+    <span class="title" style="
+  margin-bottom: 10px;">Marque :</span>
+    <div *ngFor="let marque of listMaruqe" class="form-group has-success">
+      <section class="example-section">
+        <mat-checkbox [checked]="fill()" class="example-margin" [(ngModel)]="marque.isSelected">{{marque.libelle.toLocaleUpperCase()}}</mat-checkbox>
+      </section>
+      <!--<label class="custom-control custom-checkbox  container">
+        <input type="checkbox" [checked]="marque.isSelected" [(ngModel)]="marque.isSelected" class="custom-control-input">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">{{marque.libelle.toLocaleUpperCase()}}</span>
+      </label>-->
+    </div>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-content>
+    <span class="title">Prix moins de :</span>
+    <!--<span class="text-small">{{minMaxPrix[0]}}</span>-->
+    <span class="prx" style="cursor: pointer" (click)="setMinPrice()">{{ this.minMaxPrix[0] }}</span> <mat-slider flex [min]="minMaxPrix[0]" [max]="minMaxPrix[1]" [value]="minMaxPrix[1]" [step]="0.5" [(ngModel)]="selectedPrix" (change)="drag()"></mat-slider><span class="prx" style="cursor: pointer;" (click)="setMaxPrice()"> {{ this.minMaxPrix[1] }}</span>
+    <input flex="15" type="number" [min]="minMaxPrix[0]" [max]="minMaxPrix[1]" [step]="0.5" [(ngModel)]="selectedPrix" aria-controls="value-slider"/>
+    <!--<span class="text-small">{{minMaxPrix[1]}}</span>-->
+  </mat-card-content>
+
+  <!--<button mat-raised-button color="primary" (click)="filtrer()">Filtrer</button>-->
+</mat-card>
+
+
+
+

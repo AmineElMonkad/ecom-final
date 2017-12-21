@@ -1,2 +1,37 @@
 @import '../../../../styles';
 
+@import '~@angular/material/theming';
+
+.container {
+  display: table;
+  vertical-align: middle;
+}
+
+.mat-raised-button{
+  background-color: $primary;
+}
+.mat-slider .mat-accent .mat-slider-horizontal .ng-valid .ng-dirty .ng-touched{
+  color: $primary
+}
+.container  .custom-control-indicator {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top:0;
+}
+.container .custom-control-description{
+  color: $secondary;
+}
+
+.mat-slider-thumb-label {
+  transform: rotate(45deg) !important;
+  border-radius: 50% 50% 0 !important;
+}
+
+.mat-slider-thumb {
+  transform: scale(0) !important;
+}
+
+.mat-slider-thumb-label-text {
+  opacity: 1 !important;
+}

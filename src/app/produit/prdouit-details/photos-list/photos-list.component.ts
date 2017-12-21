@@ -11,6 +11,7 @@ export class PhotosListComponent implements OnInit {
   @Input() listPhotos: Array<Photo>;
   @Input() selectedPhoto: Photo;
 
+  prop = false;
 
   constructor() { }
 
@@ -21,5 +22,9 @@ export class PhotosListComponent implements OnInit {
 
   onMouseOver(image: Photo) {
     this.selectedPhoto = image;
+  }
+
+  displayImg() {
+    this.prop = !this.prop;
   }
 }

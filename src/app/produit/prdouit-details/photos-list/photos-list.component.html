@@ -1,11 +1,17 @@
-<div class="image-container" *ngIf="listPhotos">
-  <div class="thumbnails-vertical-container" >
-    <button class="thumbnails-thumbnail-button" *ngFor="let image of listPhotos">
-      <img class="thumbnails-thumbnail" style="width: 80px!important; height: 80px !important;"
+<div class="all" *ngIf="listPhotos">
+  <div class="thumbs" >
+    <div class="detThumbs" *ngFor="let image of listPhotos">
+      <img class="" style=""
            [src]="image.urlImage"
            (mouseover)="onMouseOver(image)">
-    </button>
+    </div>
   </div>
-  <img itemprop="image" [src]="selectedPhoto.urlImage"
-       class="thumbnails-selected-image" />
+  <div class="mainImg"(click)="displayImg();">
+    <img [src]="selectedPhoto.urlImage"/>
+  </div>
+  <div id="myModal" class="modal" [style.display]="prop ? 'block' : none">
+    <span class="close" (click)="displayImg();">×</span>
+    <img (click)="displayImg();" style="cursor: zoom-out;" [src]="selectedPhoto.urlImage" class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div>
 </div>

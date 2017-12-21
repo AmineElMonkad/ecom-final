@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  API_ENDPOINT: 'http://localhost:8080/ecom-back-web/api/',
+  API_ENDPOINT: 'http://152.77.78.38/ecom-back-web/api/',
   AppName: 'BuyCycle'
 };

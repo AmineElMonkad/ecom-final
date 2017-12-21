@@ -10,8 +10,12 @@ export class CommonService {
   }
 
 
+  /*----------------- Date ------------------------- */
+  toDate(date: any): Date {
+    return new Date(date);
+  }
   /*----------------- String ------------------------- */
-  stringfyJson(o:Object):string{
+  stringfyJson(o: Object): string{
     var cache = [];
     return JSON.stringify(o, function(key, value) {
       if (typeof value === 'object' && value !== null) {

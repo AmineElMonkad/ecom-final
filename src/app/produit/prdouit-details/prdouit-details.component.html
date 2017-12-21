@@ -1,74 +1,171 @@
+<!--<div class="container" xmlns="http://www.w3.org/1999/html">-->
+
+  <!--<div class="row h-100 mt-5">-->
+    <!--<div class="col-12-md-3">-->
+      <!--<img src="{{selectedProduit.marque.photo}}"/> {{selectedProduit.reference}}-->
+    <!--</div>-->
+    <!--<div class="col-12-md-3">-->
+      <!--<app-rating [rating]="4" [itemId]="'53 avis'"></app-rating>-->
+      <!--&lt;!&ndash;<star-rating-comp [starType]="'svg'" [rating]="4.5"></star-rating-comp>&ndash;&gt;-->
+    <!--</div>-->
+    <!--<div class="col-12-md-3">-->
+      <!--25 évaluations-->
+      <!--&lt;!&ndash;<star-rating-comp [starType]="'svg'" [rating]="4.5"></star-rating-comp>&ndash;&gt;-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="row">-->
+    <!--<div class="col-7">-->
+      <!--<div itemscope class="row padding-top">-->
+        <!--<app-photos-list [listPhotos]="listPhotos" [selectedPhoto]="selectedPhoto"  class="col-md-6">-->
+        <!--</app-photos-list>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-5">-->
+      <!--<div class="container">-->
+        <!--<mat-card xmlns="http://www.w3.org/1999/html">-->
+          <!--<mat-card-content>-->
+            <!--<div *ngIf="isPromotion === 'true';then content else other_content"></div>-->
+            <!--<ng-template #content>-->
+              <!--<span class="product-grid__oldprice ">  <s data-text="Strikethrough">{{selectedProduit.prixUnitaire}}€</s></span>-->
+              <!--<span class="product-grid__price">-{{(tauxPromo === null || tauxPromo === 0)? pourcentagePromo+"€": tauxPromo +'%'}}</span> <span class="product-grid__oldprice">{{prix}}€</span>-->
+            <!--</ng-template>-->
+            <!--<ng-template #other_content>-->
+              <!--<span class="product-grid__oldprice">{{prix}}€</span>-->
+            <!--</ng-template>-->
+          <!--</mat-card-content>-->
+
+          <!--<mat-card-content>-->
+            <!--<div class="row">-->
+              <!--<label>Matériaux : &nbsp;</label>{{selectedProduit.ficheTechnique.materiele}}-->
+            <!--</div>-->
+
+            <!--<div class="row">-->
+              <!--<label>Poid : &nbsp;</label>{{selectedProduit.ficheTechnique.poid}}-->
+            <!--</div>-->
+
+            <!--<div class="row">-->
+              <!--<label>Taille des roues : &nbsp;</label>{{selectedProduit.ficheTechnique.tailleRoues}}"-->
+            <!--</div>-->
+
+            <!--<div class="row">-->
+
+                <!--<label>Dérailleur : &nbsp;</label>{{selectedProduit.ficheTechnique.derailleur}}-->
+
+            <!--</div>-->
+
+            <!--<div *ngIf="selectedProduit.category.id ==  5">-->
+              <!--<div class="row">-->
+                <!--<label>Batterie : &nbsp;</label>{{selectedProduit.ficheTechnique.batterie}}-->
+              <!--</div>-->
+
+              <!--<div class="row">-->
+                <!--<label>Poid: </label>{{selectedProduit.ficheTechnique.batteriePoid}}-->
+              <!--</div>-->
+
+              <!--<div class="row">-->
+                <!--<label>Puissance : </label>{{selectedProduit.ficheTechnique.batteriePuissance}}"-->
+              <!--</div>-->
+            <!--</div>-->
+
+            <!--<span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Ajouter au Panier</span>-->
+            <!--<span (click)="return()" class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> Retour</span>-->
+
+          <!--</mat-card-content>-->
+        <!--</mat-card>-->
+
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<!--<div class="container">-->
+  <!--avis clients-->
+<!--</div>-->
+
 <div class="container" xmlns="http://www.w3.org/1999/html">
 
   <div class="row h-100 mt-5">
-    <div class="col-12-md-3">
-      <img src="{{selectedProduit.marque.photo}}"/> {{selectedProduit.reference}}
+    <div class="col-12-md-3 info">
+      <img src="{{selectedProduit.marque.photo}}"/>
+      <span class="badge badge-default"><i class="fa fa-tags"></i>  {{selectedProduit.reference}}</span>
     </div>
     <div class="col-12-md-3">
-      <app-rating [rating]="4" [itemId]="'53 avis'"></app-rating>
       <!--<star-rating-comp [starType]="'svg'" [rating]="4.5"></star-rating-comp>-->
     </div>
-    <div class="col-12-md-3">
-      25 évaluations
-      <!--<star-rating-comp [starType]="'svg'" [rating]="4.5"></star-rating-comp>-->
-    </div>
+    <!--<div class="col-12-md-3">-->
+    <!--25 évaluations-->
+    <!--&lt;!&ndash;<star-rating-comp [starType]="'svg'" [rating]="4.5"></star-rating-comp>&ndash;&gt;-->
+    <!--</div>-->
   </div>
   <div class="row">
-    <div class="col-7">
-      <div itemscope class="row padding-top">
-        <app-photos-list [listPhotos]="listPhotos" [selectedPhoto]="selectedPhoto"  class="col-md-6">
-        </app-photos-list>
-      </div>
+    <div class="col-lg-7 col-md-12" style="
+    padding-left: 0;">
+      <app-photos-list [listPhotos]="listPhotos" [selectedPhoto]="selectedPhoto"  class="col-md-12">
+      </app-photos-list>
     </div>
-    <div class="col-5">
+    <div class="col-lg-5 col-md-12" style="margin-top: 22px;">
       <div class="container">
-        <mat-card xmlns="http://www.w3.org/1999/html">
-          <mat-card-content>
-            <div *ngIf="isPromotion === 'true';then content else other_content"></div>
-            <ng-template #content>
-              <span class="product-grid__oldprice ">  <s data-text="Strikethrough">{{selectedProduit.prixUnitaire}}€</s></span>
-              <span class="product-grid__price">-{{(tauxPromo === null || tauxPromo === 0)? pourcentagePromo+"€": tauxPromo +'%'}}</span> <span class="product-grid__oldprice">{{prix}}€</span>
-            </ng-template>
-            <ng-template #other_content>
-              <span class="product-grid__oldprice">{{prix}}€</span>
-            </ng-template>
-          </mat-card-content>
+        <mat-card xmlns="http://www.w3.org/1999/html" style="
+    padding-top: 10px;">
+          <!--<mat-card-content>-->
+          <!--<div *ngIf="isPromotion === 'true';then content else other_content"></div>-->
+          <!--<ng-template #content>-->
+          <!--<span class="product-grid__oldprice ">  <s data-text="Strikethrough">{{selectedProduit.prixUnitaire}}€</s></span>-->
+          <!--<span class="product-grid__price">-{{(tauxPromo === null || tauxPromo === 0)? pourcentagePromo+"€": tauxPromo +'%'}}</span> <span class="product-grid__oldprice">{{prix}}€</span>-->
+          <!--</ng-template>-->
+          <!--&lt;!&ndash;<ng-template #other_content>&ndash;&gt;-->
+          <!--&lt;!&ndash;<span class="badge badge-default"><span class="bold">Prix : </span>{{prix}}€</span>&ndash;&gt;-->
+          <!--&lt;!&ndash;</ng-template>&ndash;&gt;-->
+          <!--</mat-card-content>-->
 
           <mat-card-content>
+
+            <div class="row price">
+              <!--<span class="badge badge-danger"><span>{{prix}} €</span></span>-->
+              <!--<strong style="font-size: 40px; color: #868181;">{{prix}} €</strong>-->
+              <div *ngIf="isPromotion === 'true';then content else other_content"></div>
+              <ng-template #content>
+                <strong style="font-size: 30px; color: #868181;" class="product-grid__oldprice ">  <s data-text="Strikethrough">{{selectedProduit.prixUnitaire}}€</s></strong>&nbsp;
+                <strong style="font-size: 30px;" class="product-grid__price">-{{(tauxPromo === null || tauxPromo === 0)? pourcentagePromo+"€": tauxPromo +'%'}}</strong>&nbsp; <strong style="font-size: 30px; color: #868181;" class="product-grid__oldprice">{{prix}}€</strong>
+              </ng-template>
+              <ng-template #other_content>
+                <strong style="font-size: 30px; color: #868181;" class="product-grid__oldprice">{{prix}}€</strong>
+              </ng-template>
+            </div>
             <div class="row">
-              <label>Matériaux : &nbsp;</label>{{selectedProduit.ficheTechnique.materiele}}
+              <span class="bold">Matériaux : &nbsp;</span>{{selectedProduit.ficheTechnique.materiele}}
             </div>
 
             <div class="row">
-              <label>Poid : &nbsp;</label>{{selectedProduit.ficheTechnique.poid}}
+              <span class="bold">Poid : &nbsp;</span>{{selectedProduit.ficheTechnique.poid}}
             </div>
 
             <div class="row">
-              <label>Taille des roues : &nbsp;</label>{{selectedProduit.ficheTechnique.tailleRoues}}"
+              <span class="bold">Taille des roues : &nbsp;</span>{{selectedProduit.ficheTechnique.tailleRoues}}"
             </div>
 
             <div class="row">
 
-                <label>Dérailleur : &nbsp;</label>{{selectedProduit.ficheTechnique.derailleur}}
+              <span class="bold">Dérailleur : &nbsp;</span>{{selectedProduit.ficheTechnique.derailleur}}
 
             </div>
 
             <div *ngIf="selectedProduit.category.id ==  5">
               <div class="row">
-                <label>Batterie : &nbsp;</label>{{selectedProduit.ficheTechnique.batterie}}
+                <span class="bold">Batterie : &nbsp;</span>{{selectedProduit.ficheTechnique.batterie}}
               </div>
 
               <div class="row">
-                <label>Poid: </label>{{selectedProduit.ficheTechnique.batteriePoid}}
+                <span class="bold">Poid: </span>{{selectedProduit.ficheTechnique.batteriePoid}}
               </div>
 
               <div class="row">
-                <label>Puissance : </label>{{selectedProduit.ficheTechnique.batteriePuissance}}"
+                <span class="bold">Puissance : </span>{{selectedProduit.ficheTechnique.batteriePuissance}}"
               </div>
             </div>
 
-            <span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Ajouter au Panier</span>
-            <span (click)="return()" class="product-grid__btn product-grid__view"><i class="fa fa-eye"></i> Retour</span>
+            <span (click)="addCart()" class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Ajouter au Panier</span>
+            <span (click)="return()" class="product-grid__btn product-grid__view"><i class="fa fa-backward"></i> Retour</span>
 
           </mat-card-content>
         </mat-card>
@@ -78,7 +175,5 @@
   </div>
 </div>
 
-<div class="container">
-  avis clients
-</div>
+
 

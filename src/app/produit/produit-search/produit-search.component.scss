@@ -2,20 +2,101 @@
   width: 68em;
 }
 
+.display {
+  display: none;
+}
+
+#items {
+  position: relative;
+}
+
+//#items .item {
+//  padding-bottom: 90px;
+//}
+
+#items .item .info{
+  display: none;
+}
+
+#items .item:hover .info{
+  display: block;
+  position: absolute;
+}
+
+@media only screen and (max-width: 800px) {
+  #items {
+    width: 50%;
+  }
+}
+
+.cont {
+  position: relative;
+  width: 50%;
+}
+
+//.image {
+//  display: block;
+//  width: 100%;
+//  height: auto;
+//}
+
+.cont:hover .image {
+  opacity: 0.3;
+}
+
+.cont:hover .overlay {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  height:0;
+  transition: .5s ease;
+}
+
+.cont:hover .overlay {
+  bottom: 0;
+  height: 100%;
+}
+
+.text {
+  white-space: nowrap;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+
+
+
+
+
 // Start here
-@import '../../../styles.scss';
+
 $title-color: #222;
 $font-color: #777;
 $light-gray: #eee;
-//$primary: #db2d2c;
-//$secondary: #42A5F5;
+$primary: #db2d2c;
+$secondary: #42A5F5;
 
 // product
 $product-box-shadow: 0px 0px 0px 1px $light-gray;
 
-* {
-  box-sizing: border-box;
-}
+
+
+
+
+//* {
+//  box-sizing: border-box;
+//}
 
 //body {
 //  color: $font-color;
@@ -24,10 +105,12 @@ $product-box-shadow: 0px 0px 0px 1px $light-gray;
 //  position: relative;
 //}
 
+
 .product-grid {
   width: 60em;
   margin: 2rem auto;
   // TODO: apply clearfix
+
 
   // If want a flexbox grid.
   &.product-grid--flexbox {
@@ -39,11 +122,10 @@ $product-box-shadow: 0px 0px 0px 1px $light-gray;
     .product-grid__title {
       height: auto;
 
-      &:after {
-        display: none;
-      }
+      &:after { display: none; }
     }
   }
+
 
   &__wrapper {
     margin-left: -1rem;
@@ -52,11 +134,12 @@ $product-box-shadow: 0px 0px 0px 1px $light-gray;
   }
 
   &__product-wrapper {
-    padding: 1rem;
+    //padding: 1rem;
     float: left;
     width: 33.33333%;
-    margin-bottom: 80px;
+    //margin-bottom: 80px;
   }
+
 
   &__product {
     padding: 1rem;
@@ -78,6 +161,7 @@ $product-box-shadow: 0px 0px 0px 1px $light-gray;
     }
   }
 
+
   // product image wrapper
   &__img-wrapper {
     width: 100%;
@@ -87,12 +171,14 @@ $product-box-shadow: 0px 0px 0px 1px $light-gray;
     height: 150px;
   }
 
+
   // product image
   &__img {
     max-width: 100%;
     height: auto;
     max-height: 100%;
   }
+
 
   //	product title
   &__title {
@@ -123,6 +209,8 @@ $product-box-shadow: 0px 0px 0px 1px $light-gray;
     letter-spacing: .4px;
   }
 
+
+
   // extend wrapper
   &__extend-wrapper {
     position: relative;
@@ -150,6 +238,7 @@ $product-box-shadow: 0px 0px 0px 1px $light-gray;
     }
   }
 
+
   // product description
   &__description {
     font-size: .875em;
@@ -157,6 +246,7 @@ $product-box-shadow: 0px 0px 0px 1px $light-gray;
     margin-top: .4375rem;
     margin-bottom: 0;
   }
+
 
   // buttons
   &__btn {
@@ -170,29 +260,25 @@ $product-box-shadow: 0px 0px 0px 1px $light-gray;
     cursor: pointer;
     border-radius: 4px;
 
-    i.fa {
-      margin-right: .3125rem;
-    }
+    i.fa { margin-right: .3125rem;}
   }
+
 
   &__add-to-cart {
     color: #fff;
     background: $primary;
 
-    &:hover {
-      background: lighten($primary, 10%);
-    }
+    &:hover { background: lighten($primary, 10%); }
   }
 
   &__view {
     color: $font-color;
     background: $light-gray;
 
-    &:hover {
-      background: lighten($light-gray, 10%);
-    }
+    &:hover { background: lighten($light-gray, 10%); }
   }
 }
+
 
 .min-100 {
   min-height: 100vh;
@@ -203,7 +289,7 @@ $product-box-shadow: 0px 0px 0px 1px $light-gray;
   position: static;
 }
 
-.navbar.affix {
+.navbar.affix{
   position: fixed;
   width: 100%;
   top: 0;
@@ -229,12 +315,12 @@ $product-box-shadow: 0px 0px 0px 1px $light-gray;
 
 #sidemenu .nav-link.active,
 #sidemenu .nav-link:hover,
-#sidemenu .nav-link:focus {
+#sidemenu .nav-link:focus{
   color: #111;
   border-bottom: 1px #000 dashed;
 }
 
-.anchor {
+.anchor{
   display: block;
   height: 70px;
   margin-top: -70px;
@@ -249,8 +335,7 @@ $product-box-shadow: 0px 0px 0px 1px $light-gray;
 footer a {
   color: #ccc;
 }
-
 footer a:hover,
-footer a:focus {
+footer a:focus{
   color: #eee;
 }

@@ -77,5 +77,9 @@ export class ProduitListComponent implements OnInit {
     return this.paginationFrom(pageEvent) + 6;
   }
 
+  buttonMessage(filtre) {
+    this.filtre = filtre;
+  }
+
 
 }

@@ -14,10 +14,12 @@ import {RouterModule} from '@angular/router';
 // Routes
 import {routes} from './app.routes';
 import {UserModule} from "./user/user.module";
+import {MenuComponent} from "./menu/menu.component";
 
   @NgModule({
     declarations: [
-      AppComponent
+      AppComponent,
+      MenuComponent
     ],
     imports: [
     // commun
@@ -37,6 +39,7 @@ import {UserModule} from "./user/user.module";
     {provide: ErrorHandler, useClass: MyErrorHandler},
     { provide: CommonService, useValue: CommonService }
   ],
+    exports : [MenuComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
